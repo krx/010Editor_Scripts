@@ -1,0 +1,25 @@
+//------------------------------------------------
+//--- 010 Editor v11.0.1 Script File
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+//   History: 
+//------------------------------------------------
+
+ubyte cur = ReadByte(GetCursorPos());
+Printf("Skipping all 0x%x forward...\n", cur);
+
+int64 pos;
+for(pos = GetCursorPos(); pos < FileSize(); ++pos) {
+    if (cur != ReadByte(pos)) {
+        SetCursorPos(pos);
+        break;
+    }
+}
+
+if (pos == FileSize()) {
+    Printf("All bytes were 0x%x, cursor unchanged\n", cur);
+}
